@@ -1,7 +1,6 @@
 function ElementBuilder(){}
 
 ElementBuilder.prototype.build = function() {
-  console.log(this);
   this.element = document.createElement(arguments[0]);
 
   this._buildAttributes(arguments[1]);
@@ -28,15 +27,4 @@ ElementBuilder.prototype._appendChildren = function(children) {
 
 var b = new ElementBuilder();
 
-var hello = b.build('p', {className: 'hello'}, 'Hello');
-var world = b.build('p', {className: 'world'}, 'World');
-
-var div = b.build('div', null, hello, world);
-var div2 = b.build('div', {id: 'div2'}, hello, hello);
-
 var $ = b.build.bind(b);
-var div3 = $('div', {id: 'div2'}, 'harro', div2);
-
-document.body.appendChild(div3);
-
-console.log(document.body);
