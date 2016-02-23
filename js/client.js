@@ -14,11 +14,13 @@ var hello = new TextComponent({text: 'hello'}),
     world = new TextComponent({text: 'world'}),
     box = new BoxComponent();
 
-document.body.appendChild(hello);
-document.body.appendChild(world);
-document.body.appendChild(box);
+document.body.appendChild(hello.getElement());
+document.body.appendChild(world.getElement());
+document.body.appendChild(box.getElement());
 
 console.log(hello);
+console.log(world);
+console.log(box);
 console.log(hello instanceof TextComponent);
 console.log(hello instanceof Newton.Component);
 console.log(hello.__proto__);

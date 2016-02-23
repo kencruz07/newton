@@ -3,27 +3,25 @@ function Newton(){
 }
 
 function Component(params){
-  this.UID = Newton.UID;
-  Newton.UID++;
-  console.log(this.UID);
-
-  return window.renderObject.render();
-
-  // this.renderObject = Newton.renderObject;
-  // console.log(this.renderObject);
-  // this.renderObject.props = params;
-  // console.log(params);
-  // console.log(object);
-  // return object.render();
+  this.params = params;
+  return this;
 }
 
-Component.prototype = Node.prototype;
-Component.constructor = Component;
+Component.prototype.getElement = function(){
+  this.renderObject = Newton.renderObject;
+  this.UID = Newton.UID;
+  this.renderObject.props = this.params;
+  var something = this.renderObject.render();
+  something.setAttribute('data-newton-id', this.UID);
+  Newton.UID++;
+  console.log(this.UID);
+  return something;
+}
 
 Newton.prototype.Component = Component;
 
 Newton.prototype.createClass = function(renderObject){
-  window.renderObject = renderObject;
+  this.renderObject = renderObject;
   return Newton.Component;
 }
 
