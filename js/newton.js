@@ -14,8 +14,11 @@ Component.prototype.getElement = function(){
   var something = this.renderObject.render();
   something.setAttribute('data-newton-id', this.UID);
   Newton.UID++;
-  console.log(this.UID);
   return something;
+}
+
+Component.prototype.getUID = function(){
+  return this.UID;
 }
 
 Newton.prototype.Component = Component;

@@ -25,8 +25,8 @@ console.log(hello instanceof TextComponent);
 console.log(hello instanceof Newton.Component);
 console.log(hello.__proto__);
 
-// console.log(hello.getUID()); // 0
-// console.log(world.getUID()); // 1
-// console.log(box.getUID()); // 2
+console.log(hello.getUID()); // 0
+console.log(world.getUID()); // 1
+console.log(box.getUID()); // 2
 
 console.log(document.body);
