@@ -31,14 +31,16 @@
 
 // console.log(document.body);
 
-var foo = new Newton.Element('div', {className: 'foo'});
-// console.log(foo);
+// var foo = new Newton.Element('div', {className: 'foo'});
+var foo = $('div', {className: 'foo'});
 
-var baz = new Newton.Element('span', {className: 'baz'});
+// var baz = new Newton.Element('span', {className: 'baz'});
+// var baz = $('span', {className: 'baz'});
+var bar = $('div', {className: 'bar'}, foo, $('p', null, 'Hello'));
 // console.log(baz);
 
-foo.setChildren([baz]);
+// foo.setChildren([bar]);
 
-document.body.appendChild(foo.render());
+document.body.appendChild(bar.render());
 
 console.log(document.body);
