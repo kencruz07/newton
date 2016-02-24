@@ -2,6 +2,11 @@ function Newton(){
   this.UID = 0;
 }
 
+function Sampling(renderObject){
+  this.renderObject = renderObject;
+  this.component = Newton.Component;
+}
+
 
 Newton.prototype.Element = Element;
 Newton.prototype.Component = Component;
@@ -11,10 +16,10 @@ Newton.prototype.container = document.getElementById('newton-container');
 
 
 Newton.prototype.createClass = function(renderObject){
+  var something = new Sampling(renderObject);
   this.renderObject = renderObject;
-  this.Component.renderObject = renderObject;
 
-  return this.Component;
+  return something.component;
 }
 
 

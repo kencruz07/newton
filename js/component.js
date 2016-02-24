@@ -1,16 +1,18 @@
 function Component(params){
   this.params = params;
   this.UID = Newton.UID;
-  // this.renderObject = Newton.renderObject;
+  this.renderObject = Newton.renderObject;
   Newton.UID++;
+
+  console.log(this);
   return this;
 }
 
 Component.prototype.render = function(){
-  Newton.renderObject.props = this.params;
-  console.log(Newton.renderObject);
-  var element = Newton.renderObject.render();
-  return Newton.renderObject.render();
+  this.renderObject.props = this.params;
+  console.log(this.renderObject);
+  var element = this.renderObject.render();
+  return this.renderObject.render();
 }
 
 // Component.prototype.getElement = function(){

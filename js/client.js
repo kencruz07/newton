@@ -35,8 +35,8 @@ console.log(hello);
 console.log(helloElement);
 console.log(helloElement.render());
 
-document.body.appendChild(helloElement.render());
-document.body.appendChild(world.render().render());
+Newton.container.appendChild(helloElement.render());
+Newton.container.appendChild(world.render().render());
 // document.body.appendChild(world.getElement());
 // document.body.appendChild(box.getElement());
 
