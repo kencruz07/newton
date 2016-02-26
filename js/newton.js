@@ -7,8 +7,8 @@ Newton.prototype.container = document.getElementById('newton-container');
 Newton.prototype.Element = Element;
 
 
-window.Newton = new Newton();
+var Newton = new Newton();
 
-window.$ = function(type, attrs, ...children){
+var $ = function(type, attrs, ...children){
   return new Newton.Element(type, attrs, ...children);
 }
