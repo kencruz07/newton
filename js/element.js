@@ -1,43 +1,41 @@
-function Element(type, attrs, ...children){
+Newton.Element = function(type, attrs, ...children){
   this.type = type;
   this.attrs = attrs;
 
   this.setChildren(children);
 }
 
+Newton.Element.prototype = {
+  _appendChildren: function() {
+    for (var i = 0; i < this.children.length; i++) {
+      var child = (this.children[i] instanceof Newton.Element) ?
+        this.children[i].render() :
+        document.createTextNode(this.children[i]);
 
-Element.prototype.render = function(){
-  this.element = document.createElement(this.type);
-
-  this._buildAttributes(this.attrs);
-  this._appendChildren(this.children);
-
-  return this.element;
-}
-
-
-Element.prototype.setChildren = function(elements_array){
-  this.children = elements_array;
-}
-
-
-Element.prototype._appendChildren = function(children) {
-  for (var i = 0; i < children.length; i++) {
-    child = (children[i] instanceof Newton.Element) ?
-      children[i].render() :
-      document.createTextNode(children[i]);
-
-    this.element.appendChild(child);
-  }
-}
-
-
-Element.prototype._buildAttributes = function(attrs) {
-  for (var attr in attrs) {
-    if (attrs.hasOwnProperty(attr)) {
-      this.element[attr] ?
-        this.element[attr] = attrs[attr] :
-        this.element.setAttribute(attr, attrs[attr]);
+      this.element.appendChild(child);
     }
+  },
+
+  _buildAttributes: function() {
+    for (var attr in this.attrs) {
+      if (this.attrs.hasOwnProperty(attr)) {
+        this.element[attr] ?
+          this.element[attr] = this.attrs[attr] :
+          this.element.setAttribute(attr, this.attrs[attr]);
+      }
+    }
+  },
+
+  setChildren: function(elementsArray){
+    this.children = elementsArray;
+  },
+
+  render: function(){
+    this.element = document.createElement(this.type);
+
+    this._buildAttributes();
+    this._appendChildren();
+
+    return this.element;
   }
-}
+};
