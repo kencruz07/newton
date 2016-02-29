@@ -34,6 +34,10 @@ Element.prototype._appendChildren = function(children) {
 
 Element.prototype._buildAttributes = function(attrs) {
   for (var attr in attrs) {
-    if (attrs.hasOwnProperty(attr)) this.element[attr] = attrs[attr];
+    if (attrs.hasOwnProperty(attr)) {
+      this.element[attr] ?
+        this.element[attr] = attrs[attr] :
+        this.element.setAttribute(attr, attrs[attr]);
+    }
   }
 }
