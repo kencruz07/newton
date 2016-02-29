@@ -8,7 +8,7 @@ Newton.prototype.container = document.getElementById('newton-container');
 Newton.prototype.createClass = function(renderObject){
   this.renderObject = renderObject;
 
-  return this.Element;
+  return Newton.Component;
 }
 
 
