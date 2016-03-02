@@ -88,6 +88,10 @@ Newton.container.appendChild(box.render().render());
 console.log(hello);
 console.log(hello instanceof TextComponent);
 console.log(hello instanceof Newton.Component);
+
+
+console.log(hello.state);
+hello.setState({visible: true, clicked: true});
 console.log(hello.state);
 
 

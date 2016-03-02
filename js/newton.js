@@ -6,13 +6,6 @@ function Newton(){
 
 Newton.prototype.container = document.getElementById('newton-container');
 
-
-// Newton.subClass = function(properties){
-//   this.properties = properties;
-//   this.__proto__ = Newton.Component.prototype;
-//   this.__proto__.render = this.properties.render;
-// };
-
 Newton.prototype.createClass = function(properties){
   Newton.ComponentWrapper = function(props){
     Newton.Component.call(this, props);
@@ -28,7 +21,9 @@ Newton.prototype.createClass = function(properties){
 }
 
 
+
 var Newton = new Newton();
+
 
 
 var $ = function(type, attrs, ...children){
