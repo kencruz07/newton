@@ -1,6 +1,7 @@
 Newton.Element = function(type, attrs, ...children){
   this.type = type;
   this.attrs = attrs;
+  this.componentList = [];
 
   this.setChildren(children);
 }
@@ -26,8 +27,16 @@ Newton.Element.prototype = {
     }
   },
 
+  setMainComponent: function(component){
+    this.componentList[0] = component;
+  },
+
   setChildren: function(elementsArray){
     this.children = elementsArray;
+  },
+
+  components: function(){
+    return this.componentList;
   },
 
   render: function(){

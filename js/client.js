@@ -106,37 +106,89 @@
 
 
 // #4 Creating Component Instance using ElementBuilder
+// var TextComponent = Newton.createClass({
+//   render: function(){
+//     return $('p', {className: 'text-component'}, this.props.text);
+//   }
+// });
+
+// var element = $(TextComponent, {text: 'Hello'});
+
+// Newton.container.appendChild(element.render());
+
+
+
+
+
+// var InnerComponent = Newton.createClass({
+//     render: function(){
+//         return $('div', {className: 'inner'});
+//     }
+// });
+
+// var OuterComponent = Newton.createClass({
+//     render: function(){
+//         return $('div', {className: 'outer'}, $(InnerComponent));
+//     }
+// });
+
+// var outer = $(OuterComponent);
+
+// Newton.container.appendChild(outer.render());
+// Newton.container.appendChild($('div', {className: 'basic-newton-element'}).render());
+
+
+
+
+
+// #5 Element-Component Relationship
 var TextComponent = Newton.createClass({
   render: function(){
     return $('p', {className: 'text-component'}, this.props.text);
   }
 });
 
-var element = $(TextComponent, {text: 'Hello'});
+var textComponent = new TextComponent({text: 'hello'});
 
-Newton.container.appendChild(element.render());
+var p = textComponent.render();
+
+p.setMainComponent(textComponent);
+console.log(p);
+console.log(p.components()); // [textComponent]
 
 
 
 
 
-var InnerComponent = Newton.createClass({
-    render: function(){
-        return $('div', {className: 'inner'});
-    }
-});
+// var Box = Newton.createClass({
+//   render: function(){
+//     return $('div', {className: 'box'});
+//   }
+// });
 
-var OuterComponent = Newton.createClass({
-    render: function(){
-        return $('div', {className: 'outer'}, $(InnerComponent));
-    }
-});
+// var boxElement = $(Box);
 
-var outer = $(OuterComponent);
+// console.log(boxElement.components()); // [box]
 
-Newton.container.appendChild(outer.render());
-Newton.container.appendChild($('div', {className: 'basic-newton-element'}).render());
 
+
+
+
+// var InnerComponent = Newton.createClass({
+//     render: function(){
+//         return $('div', {className: 'inner'});
+//     }
+// });
+
+// var OuterComponent = Newton.createClass({
+//     render: function(){
+//         return $('div', {className: 'outer'}, $(InnerComponent));
+//     }
+// });
+
+// var outerElement = $(OuterComponent);
+
+// console.log(outerElement.components()); // [outer, (InnerComponent instance)]
 
 
 

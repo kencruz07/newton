@@ -33,13 +33,16 @@ var Newton = new Newton();
 
 
 var $ = function(typeOrComponentClass, attributesOrProps, ...children){
+
   if (typeOrComponentClass instanceof Newton.Component.constructor) {
     var ComponentClass = typeOrComponentClass;
     var props = attributesOrProps;
 
     var component = new ComponentClass(props);
     var element = component.render();
+
     element.attrs['data-newtonid'] = component.getUID();
+    // element.setMainComponent(component);
 
     return element;
   }
