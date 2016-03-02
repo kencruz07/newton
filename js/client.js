@@ -135,6 +135,7 @@ var OuterComponent = Newton.createClass({
 var outer = $(OuterComponent);
 
 Newton.container.appendChild(outer.render());
+Newton.container.appendChild($('div', {className: 'basic-newton-element'}).render());
 
 
 
