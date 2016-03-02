@@ -74,11 +74,13 @@ var BoxComponent = Newton.createClass({
   }
 });
 
+
 var hello = new TextComponent({text: 'hello'}),
     world = new TextComponent({text: 'world'});
     box = new BoxComponent();
 
 var helloElement = hello.render();
+
 
 Newton.container.appendChild(helloElement.render());
 Newton.container.appendChild(world.render().render());
