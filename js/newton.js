@@ -4,20 +4,26 @@ function Newton(){
 
 
 
-Newton.prototype.container = document.getElementById('newton-container');
+Newton.prototype = {
+  container: document.getElementById('newton-container'),
 
-Newton.prototype.createClass = function(properties){
-  Newton.ComponentWrapper = function(props){
-    Newton.Component.call(this, props);
+  createClass: function(properties){
+    Newton.ComponentWrapper = function(props){
+      Newton.Component.call(this, props);
 
-    this.render = properties.render ? properties.render : null;
-    this.state = properties.getInitialState ? properties.getInitialState() : {};
+      this.render = properties.render ? properties.render : null;
+      this.state = properties.getInitialState ? properties.getInitialState() : {};
+    }
+
+    Newton.ComponentWrapper.prototype = Newton.Component.prototype;
+    Newton.ComponentWrapper.prototype.constructor = Newton.ComponentWrapper;
+
+    return Newton.ComponentWrapper;
+  },
+
+  updateUID: function(){
+    this.UID++;
   }
-
-  Newton.ComponentWrapper.prototype = Newton.Component.prototype;
-  Newton.ComponentWrapper.prototype.constructor = Newton.ComponentWrapper;
-
-  return Newton.ComponentWrapper;
 }
 
 

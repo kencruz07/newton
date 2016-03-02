@@ -1,8 +1,8 @@
 Newton.Component = function(props){
   this.props = props ? props : null;
-  this.UID = Newton.UID;
   this.state = this.getInitialState();
-  Newton.UID++;
+  this.UID = Newton.UID;
+  Newton.updateUID();
 
   return this;
 };
