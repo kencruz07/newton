@@ -31,7 +31,11 @@ var $ = function(typeOrComponentClass, attributesOrProps, ...children){
     var ComponentClass = typeOrComponentClass;
     var props = attributesOrProps;
 
-    return new ComponentClass(props).render();
+    var component = new ComponentClass(props);
+    var element = component.render();
+    element.attrs['data-newton-id'] = component.getUID();
+
+    return element;
   }
 
   var type = typeOrComponentClass;
