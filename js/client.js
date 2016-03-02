@@ -50,16 +50,17 @@
 
 
 // #3.5 Changing State
-var c = new Newton.Component();
-c.setState({visible: true, clicked: false});
-c.setState({clicked: true});
+// var c = new Newton.Component();
+// c.setState({visible: true, clicked: false});
+// c.setState({clicked: true});
 
-console.log(c.state); // {visible: true, clicked: true}
+// console.log(c.state); // {visible: true, clicked: true}
 
 
+// #3.6 Subclass
 var TextComponent = Newton.createClass({
   getInitialState: function(){
-    return {visible: true};
+    return {visible: false};
   },
 
   render: function(){
@@ -78,23 +79,23 @@ var hello = new TextComponent({text: 'hello'}),
     box = new BoxComponent();
 
 var helloElement = hello.render();
-console.log(helloElement);
-
-
-
 
 Newton.container.appendChild(helloElement.render());
 Newton.container.appendChild(world.render().render());
 Newton.container.appendChild(box.render().render());
+
 
 console.log(hello);
 console.log(hello instanceof TextComponent);
 console.log(hello instanceof Newton.Component);
 console.log(hello.state);
 
+
 console.log(hello.getUID()); // 0
 console.log(world.getUID()); // 1
 console.log(box.getUID()); // 2
+
+
 
 
 
