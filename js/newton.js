@@ -33,7 +33,7 @@ var $ = function(typeOrComponentClass, attributesOrProps, ...children){
 
     var component = new ComponentClass(props);
     var element = component.render();
-    element.attrs['data-newton-id'] = component.getUID();
+    element.attrs['data-newtonid'] = component.getUID();
 
     return element;
   }
