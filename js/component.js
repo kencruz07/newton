@@ -1,29 +1,31 @@
-Newton.Component = function(params){
-  this.params = params;
+Newton.Component = function(props){
+  this.props = props;
   this.UID = Newton.UID;
-  this.renderObject = Newton.renderObject;
+  this.state = this.getInitialState();
   Newton.UID++;
 
-  console.log(this);
   return this;
 };
 
-Newton.Component.prototype.render = function(){
-  this.renderObject.props = this.params;
-  console.log(this.renderObject);
-  var element = this.renderObject.render();
-  return this.renderObject.render();
-};
+Newton.Component.prototype = {
+  getInitialState: function(){
+    return {};
+  },
 
-// Component.prototype.getElement = function(){
-//   // this.renderObject = Newton.renderObject; // ????
-//   this.renderObject.props = this.params;
-//   var something = this.renderObject.render();
-//   something.setAttribute('data-newton-id', this.UID);
-//   return something;
-// }
+  setState: function(newState){
+    for (var state in newState) {
+      if (newState.hasOwnProperty(state)) {
+        console.log(state, newState[state]);
+      }
+    }
+  },
 
-Newton.Component.prototype.getUID = function(){
-  return this.UID;
-};
+  getUID: function(){
+    return this.UID;
+  },
+
+  render: function(){
+    return null;
+  }
+}
 
