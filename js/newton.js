@@ -26,6 +26,16 @@ var Newton = new Newton();
 
 
 
-var $ = function(type, attrs, ...children){
-  return new Newton.Element(type, attrs, ...children);
+var $ = function(typeOrComponentClass, attributesOrProps, ...children){
+  if (typeOrComponentClass instanceof Newton.Component.constructor) {
+    var ComponentClass = typeOrComponentClass;
+    var props = attributesOrProps;
+
+    return new ComponentClass(props).render();
+  }
+
+  var type = typeOrComponentClass;
+  var attributes = attributesOrProps;
+
+  return new Newton.Element(type, attributes, ...children);
 };

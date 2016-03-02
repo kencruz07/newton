@@ -105,4 +105,15 @@ console.log(box.getUID()); // 2
 
 
 
+// #4 Creating Component Instance using ElementBuilder
+var element = $(TextComponent, {text: 'Hello'});
+console.log(element);
+console.log(element.render());
+
+Newton.container.appendChild(element.render());
+
+
+
+
+
 console.log(Newton.container);
