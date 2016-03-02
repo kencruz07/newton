@@ -58,59 +58,83 @@
 
 
 // #3.6 Subclass
-var TextComponent = Newton.createClass({
-  getInitialState: function(){
-    return {visible: false};
-  },
+// var TextComponent = Newton.createClass({
+//   getInitialState: function(){
+//     return {visible: false};
+//   },
 
-  render: function(){
-    return $('p', {className: 'text-component'}, this.props.text);
-  }
-});
+//   render: function(){
+//     return $('p', {className: 'text-component'}, this.props.text);
+//   }
+// });
 
-var BoxComponent = Newton.createClass({
-  render: function(){
-    return $('div', {className: 'box'});
-  }
-});
-
-
-var hello = new TextComponent({text: 'hello'}),
-    world = new TextComponent({text: 'world'});
-    box = new BoxComponent();
-
-var helloElement = hello.render();
+// var BoxComponent = Newton.createClass({
+//   render: function(){
+//     return $('div', {className: 'box'});
+//   }
+// });
 
 
-Newton.container.appendChild(helloElement.render());
-Newton.container.appendChild(world.render().render());
-Newton.container.appendChild(box.render().render());
+// var hello = new TextComponent({text: 'hello'}),
+//     world = new TextComponent({text: 'world'});
+//     box = new BoxComponent();
+
+// var helloElement = hello.render();
 
 
-console.log(hello);
-console.log(hello instanceof TextComponent);
-console.log(hello instanceof Newton.Component);
+// Newton.container.appendChild(helloElement.render());
+// Newton.container.appendChild(world.render().render());
+// Newton.container.appendChild(box.render().render());
 
 
-console.log(hello.state);
-hello.setState({visible: true, clicked: true});
-console.log(hello.state);
+// console.log(hello);
+// console.log(hello instanceof TextComponent);
+// console.log(hello instanceof Newton.Component);
 
 
-console.log(hello.getUID()); // 0
-console.log(world.getUID()); // 1
-console.log(box.getUID()); // 2
+// console.log(hello.state);
+// hello.setState({visible: true, clicked: true});
+// console.log(hello.state);
+
+
+// console.log(hello.getUID()); // 0
+// console.log(world.getUID()); // 1
+// console.log(box.getUID()); // 2
 
 
 
 
 
 // #4 Creating Component Instance using ElementBuilder
+var TextComponent = Newton.createClass({
+  render: function(){
+    return $('p', {className: 'text-component'}, this.props.text);
+  }
+});
+
 var element = $(TextComponent, {text: 'Hello'});
-console.log(element);
-console.log(element.render());
 
 Newton.container.appendChild(element.render());
+
+
+
+
+
+var InnerComponent = Newton.createClass({
+    render: function(){
+        return $('div', {className: 'inner'});
+    }
+});
+
+var OuterComponent = Newton.createClass({
+    render: function(){
+        return $('div', {className: 'outer'}, $(InnerComponent));
+    }
+});
+
+var outer = $(OuterComponent);
+
+Newton.container.appendChild(outer.render());
 
 
 
