@@ -3,8 +3,6 @@ Newton.Component = function(props){
   this.state = this.getInitialState();
   this.UID = Newton.UID;
   Newton.updateUID();
-
-  return this;
 };
 
 Newton.Component.prototype = {

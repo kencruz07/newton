@@ -142,19 +142,19 @@
 
 
 // #5 Element-Component Relationship
-var TextComponent = Newton.createClass({
-  render: function(){
-    return $('p', {className: 'text-component'}, this.props.text);
-  }
-});
+// var TextComponent = Newton.createClass({
+//   render: function(){
+//     return $('p', {className: 'text-component'}, this.props.text);
+//   }
+// });
 
-var textComponent = new TextComponent({text: 'hello'});
+// var textComponent = new TextComponent({text: 'hello'});
 
-var p = textComponent.render();
+// var p = textComponent.render();
 
-p.setMainComponent(textComponent);
-console.log(p);
-console.log(p.components()); // [textComponent]
+// p.setMainComponent(textComponent);
+// console.log(textComponent);
+// console.log(p.components()); // [textComponent]
 
 
 
@@ -166,8 +166,10 @@ console.log(p.components()); // [textComponent]
 //   }
 // });
 
+// // var boxElement = (new Box()).render();
 // var boxElement = $(Box);
 
+// console.log(boxElement);
 // console.log(boxElement.components()); // [box]
 
 
@@ -189,6 +191,23 @@ console.log(p.components()); // [textComponent]
 // var outerElement = $(OuterComponent);
 
 // console.log(outerElement.components()); // [outer, (InnerComponent instance)]
+
+
+
+
+
+var Box = Newton.createClass({
+  render: function(){
+    return $('div', {className: 'box'});
+  }
+});
+
+var boxElement = $(Box);
+console.log(boxElement.render()); // <div class='box' data-newtonid='0'></div>
+
+var box = boxElement.components()[0];
+console.log(box.getUID()); // 0
+
 
 
 

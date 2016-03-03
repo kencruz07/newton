@@ -1,7 +1,7 @@
 Newton.Element = function(type, attrs, ...children){
   this.type = type;
   this.attrs = attrs;
-  this.componentList = [];
+  this._componentList = [];
 
   this.setChildren(children);
 }
@@ -27,8 +27,22 @@ Newton.Element.prototype = {
     }
   },
 
+  _getDescendantComponents: function(){
+    for (var i = 0 ; i < this.children.length; i++){
+      if (this.children[i] instanceof Newton.Element){
+        this._componentList.push(...(this.children[i].components()));
+      }
+    }
+  },
+
+  _buildComponents: function(){
+    if (this.children.length) {
+      this._getDescendantComponents();
+    }
+  },
+
   setMainComponent: function(component){
-    this.componentList[0] = component;
+    this._componentList[0] = component;
   },
 
   setChildren: function(elementsArray){
@@ -36,7 +50,9 @@ Newton.Element.prototype = {
   },
 
   components: function(){
-    return this.componentList;
+    this._buildComponents();
+
+    return this._componentList;
   },
 
   render: function(){
