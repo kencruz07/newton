@@ -28,17 +28,19 @@ Newton.Element.prototype = {
   },
 
   _getDescendantComponents: function(){
+    var descendantComponents = []
+
     for (var i = 0 ; i < this.children.length; i++){
       if (this.children[i] instanceof Newton.Element){
-        this._componentList.push(...(this.children[i].components()));
+        descendantComponents.push(...(this.children[i].components()));
       }
     }
+
+    return descendantComponents;
   },
 
   _buildComponents: function(){
-    if (this.children.length) {
-      this._getDescendantComponents();
-    }
+    this._componentList.push(...(this._getDescendantComponents()));
   },
 
   setMainComponent: function(component){
