@@ -1,5 +1,5 @@
 function Newton(){
-  this.UID = 0;
+  this._UID = 0;
 }
 
 
@@ -53,11 +53,5 @@ var $ = function(typeOrComponentClass, attributesOrProps, ...children){
     element = new Newton.Element(type, attributes, ...children);
   }
 
-
-
-
-
-
   return element;
-
 };
