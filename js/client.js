@@ -1,20 +1,28 @@
 // #1 Element
+
 // var foo = new Newton.Element('div', {className: 'foo'});
 // var baz = new Newton.Element('span', {className: 'baz'});
-//
+
 // foo.setChildren([baz]);
-//
-// Newton.container.appendChild(foo.render());
+
+// Newton.DOM.render(
+//   foo,
+//   document.getElementById('newton-container')
+// );
 
 
 
 
 
 // #2 Element Builder
+
 // var foo = $('div', {className: 'foo'});
 // var bar = $('div', {className: 'bar'}, foo, $('p', null, 'Hello'));
 
-// Newton.container.appendChild(bar.render());
+// Newton.DOM.render(
+//   bar,
+//   document.getElementById('newton-container')
+// );
 
 
 
@@ -24,6 +32,7 @@
 
 
 // #3.1 Component
+
 // var generic = new Newton.Component({x: 1, y: 2});
 // console.log(generic.props.x);
 // console.log(generic.props.y);
@@ -31,6 +40,7 @@
 
 
 // #3.2 UID
+
 // var x = new Newton.Component(),
 //     y = new Newton.Component(),
 //     z = new Newton.Component();
@@ -40,16 +50,19 @@
 
 
 // #3.3 Rendering
+
 // var x = new Newton.Component();
 // console.log(x.render());
 
 
 // #3.4 State
+
 // var x = new Newton.Component();
 // console.log(x.state);
 
 
 // #3.5 Changing State
+
 // var c = new Newton.Component();
 // c.setState({visible: true, clicked: false});
 // c.setState({clicked: true});
@@ -58,6 +71,7 @@
 
 
 // #3.6 Subclass
+
 // var TextComponent = Newton.createClass({
 //   getInitialState: function(){
 //     return {visible: false};
@@ -82,9 +96,20 @@
 // var helloElement = hello.render();
 
 
-// Newton.container.appendChild(helloElement.render());
-// Newton.container.appendChild(world.render().render());
-// Newton.container.appendChild(box.render().render());
+// Newton.DOM.render(
+//   helloElement,
+//   document.getElementById('newton-container')
+// );
+
+// Newton.DOM.render(
+//   world.render(),
+//   document.getElementById('newton-container')
+// );
+
+// Newton.DOM.render(
+//   box.render(),
+//   document.getElementById('newton-container')
+// );
 
 
 // console.log(hello);
@@ -106,6 +131,7 @@
 
 
 // #4 Creating Component Instance using ElementBuilder
+
 // var TextComponent = Newton.createClass({
 //   render: function(){
 //     return $('p', {className: 'text-component'}, this.props.text);
@@ -114,7 +140,10 @@
 
 // var element = $(TextComponent, {text: 'Hello'});
 
-// Newton.container.appendChild(element.render());
+// Newton.DOM.render(
+//   element,
+//   document.getElementById('newton-container')
+// );
 
 
 
@@ -134,14 +163,19 @@
 
 // var outer = $(OuterComponent);
 
-// Newton.container.appendChild(outer.render());
-// Newton.container.appendChild($('div', {className: 'basic-newton-element'}).render());
-
+// Newton.DOM.render(
+//   outer,
+//   document.getElementById('newton-container')
+// );
 
 
 
 
 // #5 Element-Component Relationship
+
+
+// #5.1 Element-Component Relationship
+
 // var TextComponent = Newton.createClass({
 //   render: function(){
 //     return $('p', {className: 'text-component'}, this.props.text);
@@ -158,7 +192,7 @@
 
 
 
-
+// #5.2 Auto-Associate Inside ElementBuilder
 
 // var Box = Newton.createClass({
 //   render: function(){
@@ -174,28 +208,31 @@
 
 
 
+// #5.2 Nested Components
+
+// var InnerComponent = Newton.createClass({
+//     render: function(){
+//         return $('div', {className: 'inner'});
+//     }
+// });
+
+// var OuterComponent = Newton.createClass({
+//     render: function(){
+//         return $('div', {className: 'outer'}, $(InnerComponent));
+//     }
+// });
+
+// var outerElement = $(OuterComponent);
+
+// console.log(outerElement.components()); // [outer, (InnerComponent instance)]
+// Newton.DOM.render(
+//   outerElement,
+//   document.getElementById('newton-container')
+// );
 
 
-var InnerComponent = Newton.createClass({
-    render: function(){
-        return $('div', {className: 'inner'});
-    }
-});
 
-var OuterComponent = Newton.createClass({
-    render: function(){
-        return $('div', {className: 'outer'}, $(InnerComponent));
-    }
-});
-
-var outerElement = $(OuterComponent);
-
-console.log(outerElement.components()); // [outer, (InnerComponent instance)]
-Newton.container.appendChild(outerElement.render());
-
-
-
-
+// #5.3 Rendering Element with Associated Component
 
 // var Box = Newton.createClass({
 //   render: function(){
@@ -212,5 +249,15 @@ Newton.container.appendChild(outerElement.render());
 
 
 
+// #6 DOM and Render Callbacks
 
-console.log(Newton.container);
+Newton.DOM.render(
+  $('div', {className: 'test'}),
+  document.getElementById('newton-container')
+);
+
+
+
+
+
+console.log(document.getElementById('newton-container'));

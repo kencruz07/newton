@@ -25,8 +25,6 @@ function Newton(){
 
 
 Newton.prototype = {
-  container: document.getElementById('newton-container'),
-
   createClass: function(properties){
     Newton.ComponentWrapper = function(props){
       Newton.Component.call(this, props);
@@ -40,6 +38,12 @@ Newton.prototype = {
     Newton.ComponentWrapper.prototype.constructor = Newton.ComponentWrapper;
 
     return Newton.ComponentWrapper;
+  },
+
+  DOM: {
+    render: function(element, htmlElement){
+      htmlElement.appendChild(element.render());
+    }
   }
 }
 
