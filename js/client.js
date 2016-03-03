@@ -288,29 +288,29 @@
 
 // #6.3 Subcomponents
 
-var InnerComponent = Newton.createClass({
-  willRender: function(){ console.log('inner will render'); },
+// var InnerComponent = Newton.createClass({
+//   willRender: function(){ console.log('inner will render'); },
 
-  render: function(){
-    return $('div', {className: 'inner'});
-  }
-});
+//   render: function(){
+//     return $('div', {className: 'inner'});
+//   }
+// });
 
-var OuterComponent = Newton.createClass({
-  willRender: function(){ console.log('outer will render'); },
+// var OuterComponent = Newton.createClass({
+//   willRender: function(){ console.log('outer will render'); },
 
-  render: function(){
-    return $('div', {className: 'outer'}, $(InnerComponent));
-  }
-});
+//   render: function(){
+//     return $('div', {className: 'outer'}, $(InnerComponent));
+//   }
+// });
 
-// Before appending element to container:
-//  -- "outer will render"
-//  -- "inner will render"
-Newton.DOM.render(
-  $(OuterComponent),
-  document.getElementById('newton-container')
-);
+// // Before appending element to container:
+// //  -- "outer will render"
+// //  -- "inner will render"
+// Newton.DOM.render(
+//   $(OuterComponent),
+//   document.getElementById('newton-container')
+// );
 
 
 
