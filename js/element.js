@@ -1,9 +1,36 @@
 (function(){
 
   Newton.Element = function(type, attrs, ...children){
+    var _componentList = [];
+
+    var _setMainComponent = function(component){
+      _componentList[0] = component;
+    };
+
+    var _updateComponentList = function(componentArray){
+      _componentList.push(...componentArray);
+    };
+
+    var _getComponentList = function(){
+      return _componentList;
+    };
+
+
+
+    this.setMainComponent = function(component){
+      _setMainComponent(component);
+    };
+
+    this.updateComponentList = function(componentArray){
+      _updateComponentList(componentArray);
+    };
+
+    this.getComponentList = function(){
+      return _getComponentList();
+    };
+
     this.type = type;
     this.attrs = attrs;
-    this._componentList = [];
 
     this.setChildren(children);
   }
@@ -46,11 +73,7 @@
     },
 
     _buildComponents: function(){
-      this._componentList.push(...(this._getDescendantComponents()));
-    },
-
-    setMainComponent: function(component){
-      this._componentList[0] = component;
+      this.updateComponentList(this._getDescendantComponents());
     },
 
     setChildren: function(elementsArray){
@@ -60,7 +83,7 @@
     components: function(){
       this._buildComponents();
 
-      return this._componentList;
+      return this.getComponentList();
     },
 
     render: function(){

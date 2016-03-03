@@ -1,20 +1,22 @@
 function Newton(){
-  var UID = 0;
+  var _UID = 0;
 
-  var updateUID = function(){
-    UID++;
+  var _updateUID = function(){
+    _UID++;
   };
 
-  var getUID = function(){
-    return UID;
+  var _getUID = function(){
+    return _UID;
   }
 
+
+
   this.updateUID = function(){
-    return updateUID();
+    return _updateUID();
   };
 
   this.getUID = function(){
-    return getUID();
+    return _getUID();
   };
 }
 
