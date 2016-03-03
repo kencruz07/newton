@@ -318,11 +318,9 @@ Newton.DOM.render(
 
 // #7 Event Listeners
 
-function clicked() {
-  alert("I am clicked!");
-}
+function clicked(){ alert("I am clicked!"); }
 
-var div = $('div', {onclick: clicked, style: "height: 50px; width: 50px; background-color: black;"});
+var div = $('div', {onclick: clicked, style: 'height: 50px; width: 50px; background-color: black;'});
 Newton.DOM.render(
   div,
   document.getElementById('newton-container')

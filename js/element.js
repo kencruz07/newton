@@ -53,9 +53,7 @@
     _buildAttributes: function() {
       for (var attr in this.attrs) {
         if (this.attrs.hasOwnProperty(attr)) {
-          this.element[attr] ?
-            this.element[attr] = this.attrs[attr] :
-            this.element.setAttribute(attr, this.attrs[attr]);
+          this.element[attr] = this.attrs[attr]
         }
       }
     },
