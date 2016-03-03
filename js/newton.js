@@ -23,7 +23,7 @@ Newton.prototype = {
   },
 
   updateUID: function(){
-    this.UID++;
+    this._UID++;
   }
 }
 
