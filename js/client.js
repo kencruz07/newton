@@ -176,37 +176,38 @@
 
 
 
-// var InnerComponent = Newton.createClass({
-//     render: function(){
-//         return $('div', {className: 'inner'});
-//     }
-// });
-
-// var OuterComponent = Newton.createClass({
-//     render: function(){
-//         return $('div', {className: 'outer'}, $(InnerComponent));
-//     }
-// });
-
-// var outerElement = $(OuterComponent);
-
-// console.log(outerElement.components()); // [outer, (InnerComponent instance)]
-
-
-
-
-
-var Box = Newton.createClass({
-  render: function(){
-    return $('div', {className: 'box'});
-  }
+var InnerComponent = Newton.createClass({
+    render: function(){
+        return $('div', {className: 'inner'});
+    }
 });
 
-var boxElement = $(Box);
-console.log(boxElement.render()); // <div class='box' data-newtonid='0'></div>
+var OuterComponent = Newton.createClass({
+    render: function(){
+        return $('div', {className: 'outer'}, $(InnerComponent));
+    }
+});
 
-var box = boxElement.components()[0];
-console.log(box.getUID()); // 0
+var outerElement = $(OuterComponent);
+
+console.log(outerElement.components()); // [outer, (InnerComponent instance)]
+Newton.container.appendChild(outerElement.render());
+
+
+
+
+
+// var Box = Newton.createClass({
+//   render: function(){
+//     return $('div', {className: 'box'});
+//   }
+// });
+
+// var boxElement = $(Box);
+// console.log(boxElement.render()); // <div class='box' data-newtonid='0'></div>
+
+// var box = boxElement.components()[0];
+// console.log(box.getUID()); // 0
 
 
 

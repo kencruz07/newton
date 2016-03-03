@@ -1,5 +1,21 @@
 function Newton(){
-  this._UID = 0;
+  var UID = 0;
+
+  var updateUID = function(){
+    UID++;
+  };
+
+  var getUID = function(){
+    return UID;
+  }
+
+  this.updateUID = function(){
+    return updateUID();
+  };
+
+  this.getUID = function(){
+    return getUID();
+  };
 }
 
 
@@ -20,10 +36,6 @@ Newton.prototype = {
     Newton.ComponentWrapper.prototype.constructor = Newton.ComponentWrapper;
 
     return Newton.ComponentWrapper;
-  },
-
-  updateUID: function(){
-    this._UID++;
   }
 }
 
