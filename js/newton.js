@@ -20,6 +20,8 @@ function Newton(){
 
 
 
+
+
 Newton.prototype = {
   container: document.getElementById('newton-container'),
 
@@ -41,9 +43,9 @@ Newton.prototype = {
 
 
 
+
+
 var Newton = new Newton();
-
-
 
 var $ = function(typeOrComponentClass, attributesOrProps, ...children){
   var component = null;
