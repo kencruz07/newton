@@ -12,7 +12,8 @@ Newton.prototype = {
       Newton.Component.call(this, props);
 
       this.render = properties.render ? properties.render : null;
-      this.state = properties.getInitialState ? properties.getInitialState() : {};
+      this.state =
+        properties.getInitialState ? properties.getInitialState() : {};
     }
 
     Newton.ComponentWrapper.prototype = Newton.Component.prototype;

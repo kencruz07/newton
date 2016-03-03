@@ -1,7 +1,7 @@
 Newton.Component = function(props){
   this.props = props ? props : null;
   this.state = this.getInitialState();
-  this.UID = Newton._UID;
+  this._UID = Newton._UID;
   Newton.updateUID();
 };
 
@@ -12,16 +12,14 @@ Newton.Component.prototype = {
 
   setState: function(newState){
     for (var state in newState) {
-      if (newState.hasOwnProperty(state)) {
-        this.state[state] = newState[state]
-      }
+      if (newState.hasOwnProperty(state)) this.state[state] = newState[state];
     }
 
     this.render();
   },
 
   getUID: function(){
-    return this.UID;
+    return this._UID;
   },
 
   render: function(){
