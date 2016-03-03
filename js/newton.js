@@ -30,8 +30,15 @@ Newton.prototype = {
       Newton.Component.call(this, props);
 
       this.render = properties.render ? properties.render : null;
+
       this.state =
         properties.getInitialState ? properties.getInitialState() : {};
+
+      this.willRender =
+        properties.willRender ? properties.willRender : function(){};
+
+      this.didRender =
+        properties.didRender ? properties.didRender : function(){};
     }
 
     Newton.ComponentWrapper.prototype = Newton.Component.prototype;
@@ -42,7 +49,17 @@ Newton.prototype = {
 
   DOM: {
     render: function(element, htmlElement){
+      var components = element.components();
+
+      for (var i = 0; i < components.length; i++){
+        components[i].willRender();
+      }
+
       htmlElement.appendChild(element.render());
+
+      for (var i = 0; i < components.length; i++){
+        components[i].didRender();
+      }
     }
   }
 }

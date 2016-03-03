@@ -251,8 +251,64 @@
 
 // #6 DOM and Render Callbacks
 
+
+// #6.1 Newton.DOM
+
+// Newton.DOM.render(
+//   $('div', {className: 'test'}),
+//   document.getElementById('newton-container')
+// );
+
+
+
+// #6.2 Callbacks
+
+// var TextComponent = Newton.createClass({
+
+//   willRender: function(){
+//     console.log(this.props.text + ' will render');
+//   },
+
+//   didRender: function(){
+//     console.log(this.props.text + ' did render');
+//   },
+
+//   render: function(){
+//     return $('p', {className: 'text-component'}, this.props.text);
+//   }
+
+// });
+
+// Newton.DOM.render(
+//   $(TextComponent, {text: 'Hello World'}),
+//   document.getElementById('newton-container')
+// );
+
+
+
+// #6.3 Subcomponents
+
+var InnerComponent = Newton.createClass({
+  willRender: function(){ console.log('inner will render'); },
+
+  render: function(){
+    return $('div', {className: 'inner'});
+  }
+});
+
+var OuterComponent = Newton.createClass({
+  willRender: function(){ console.log('outer will render'); },
+
+  render: function(){
+    return $('div', {className: 'outer'}, $(InnerComponent));
+  }
+});
+
+// Before appending element to container:
+//  -- "outer will render"
+//  -- "inner will render"
 Newton.DOM.render(
-  $('div', {className: 'test'}),
+  $(OuterComponent),
   document.getElementById('newton-container')
 );
 
