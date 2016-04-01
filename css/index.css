@@ -1,0 +1,11 @@
+.outer {
+  height: 200px;
+  width: 200px;
+  background-color: pink;
+}
+
+.inner {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+}

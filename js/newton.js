@@ -53,6 +53,8 @@ Newton.prototype = {
 
   DOM: {
     render: function(element, htmlElement){
+      console.clear();
+
       var components = element.components();
 
       for (var i = 0; i < components.length; i++){
@@ -66,6 +68,7 @@ Newton.prototype = {
       }
       else {
         var updatedElement = components[0].render();
+
         updatedElement.attrs['data-newtonid'] = components[0].getUID();
         htmlElement.replaceChild(updatedElement.render(), renderedElement);
       }
@@ -79,12 +82,12 @@ Newton.prototype = {
 
     update: function(updatedComponent){
       var renderedElement = this.getRenderedElement(updatedComponent.getUID());
-      var updatedElement = updatedComponent.render();
+      var ghostElement = updatedComponent.render();
 
       // IMPORTANT! Overrides element main component to existing component
-      updatedElement.setMainComponent(updatedComponent);
+      ghostElement.setMainComponent(updatedComponent);
 
-      this.render(updatedElement, renderedElement.parentNode);
+      this.render(ghostElement, renderedElement.parentNode);
     },
 
     getRenderedElement: function(componentUID){

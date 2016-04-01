@@ -387,6 +387,12 @@
 //   }
 // });
 
+// Newton.DOM.render($(Text), document.getElementById('newton-container'));
+
+
+
+
+
 var InnerComponent = Newton.createClass({
   getInitialState: function(){
     return {clicked: false};
@@ -398,7 +404,7 @@ var InnerComponent = Newton.createClass({
 
   render: function(){
     var string = this.state.clicked ? 'thanks': 'click me';
-    return $('div', {onclick: this.onclick.bind(this), className: 'inner', style: 'height: 100px; width: 100px; background-color: red;'}, string);
+    return $('div', {onclick: this.onclick.bind(this), className: 'inner'}, string);
   },
 
   onclick: function(e){
@@ -421,7 +427,7 @@ var OuterComponent = Newton.createClass({
   didRender: function(){ console.log('outer did render'); },
 
   render: function(){
-    return $('div', {onclick: this.onclick.bind(this), className: 'outer', style: 'height: 200px; width: 200px; background-color: pink;'}, $(InnerComponent));
+    return $('div', {onclick: this.onclick.bind(this), className: 'outer'}, $(InnerComponent));
   },
 
   onclick: function(e){
