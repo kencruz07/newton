@@ -79,7 +79,7 @@ Newton.prototype = {
 
     update: function(updatedComponent){
       var renderedElement = this.getRenderedElement(updatedComponent.getUID());
-      var updatedElement = $(updatedComponent.constructor);
+      var updatedElement = updatedComponent.render();
 
       // IMPORTANT! Overrides element main component to existing component
       updatedElement.setMainComponent(updatedComponent);

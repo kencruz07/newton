@@ -364,18 +364,64 @@
 
 // #8.2 Auto-update on Change State
 
-var Text = Newton.createClass({
+// var Text = Newton.createClass({
+//   getInitialState: function(){
+//     return {clicked: false};
+//   },
+
+//   willRender: function(){ console.log('component will render'); },
+
+//   didRender: function(){ console.log('component did render'); },
+
+//   render: function(){
+//     var string = this.state.clicked ? 'thanks': 'click me';
+//     return $('p', {onclick: this.onclick.bind(this), className: 'helloWorld'}, string);
+//   },
+
+//   onclick: function(e){
+//     e.preventDefault();
+
+//     // This should automaticall re-render the component to the DOM
+//     // using Newton.DOM.update method.
+//     this.setState({clicked: !this.state.clicked});
+//   }
+// });
+
+var InnerComponent = Newton.createClass({
   getInitialState: function(){
     return {clicked: false};
   },
 
-  willRender: function(){ console.log('component will render'); },
+  willRender: function(){ console.log('inner will render'); },
 
-  didRender: function(){ console.log('component did render'); },
+  didRender: function(){ console.log('inner did render'); },
 
   render: function(){
     var string = this.state.clicked ? 'thanks': 'click me';
-    return $('p', {onclick: this.onclick.bind(this), className: 'helloWorld'}, string);
+    return $('div', {onclick: this.onclick.bind(this), className: 'inner', style: 'height: 100px; width: 100px; background-color: red;'}, string);
+  },
+
+  onclick: function(e){
+    e.preventDefault();
+    e.stopPropagation();
+
+    // This should automaticall re-render the component to the DOM
+    // using Newton.DOM.update method.
+    this.setState({clicked: !this.state.clicked});
+  }
+});
+
+var OuterComponent = Newton.createClass({
+  getInitialState: function(){
+    return {clicked: false};
+  },
+
+  willRender: function(){ console.log('outer will render'); },
+
+  didRender: function(){ console.log('outer did render'); },
+
+  render: function(){
+    return $('div', {onclick: this.onclick.bind(this), className: 'outer', style: 'height: 200px; width: 200px; background-color: pink;'}, $(InnerComponent));
   },
 
   onclick: function(e){
@@ -386,16 +432,6 @@ var Text = Newton.createClass({
     this.setState({clicked: !this.state.clicked});
   }
 });
-
-var OuterComponent = Newton.createClass({
-  willRender: function(){ console.log('outer will render'); },
-
-  render: function(){
-    return $('div', {className: 'outer'}, $(Text));
-  }
-});
-
-// var clickme = $(Text);
 
 Newton.DOM.render($(OuterComponent), document.getElementById('newton-container'));
 
