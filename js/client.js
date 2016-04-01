@@ -318,15 +318,85 @@
 
 // #7 Event Listeners
 
-function clicked(){ alert("I am clicked!"); }
+// function clicked(){ alert("I am clicked!"); }
 
-var div = $('div', {onclick: clicked, style: 'height: 50px; width: 50px; background-color: black;'});
-Newton.DOM.render(
-  div,
-  document.getElementById('newton-container')
-);
-
-
+// var div = $('div', {onclick: clicked, style: 'height: 50px; width: 50px; background-color: black;'});
+// Newton.DOM.render(
+//   div,
+//   document.getElementById('newton-container')
+// );
 
 
-console.log(document.getElementById('newton-container'));
+
+
+
+// #8 DOM Update and Component's State
+
+
+// #8.1 DOM Update
+
+// var Text = Newton.createClass({
+//   render: function(){
+//     return $('p', null, this.props.text);
+//   }
+// });
+
+// var text = $(Text, {text: 'Hello'});
+
+// Newton.DOM.render(
+//   text,
+//   document.getElementById('newton-container')
+// );
+
+// var textComponent = text.components()[0];
+
+// console.log(textComponent.props.text);
+
+// textComponent.props.text = 'HOLOOOO';
+
+// console.log(textComponent.props.text);
+
+// Newton.DOM.update(textComponent);
+
+
+
+
+
+// #8.2 Auto-update on Change State
+
+var Text = Newton.createClass({
+  getInitialState: function(){
+    return {clicked: false};
+  },
+
+  willRender: function(){ console.log('component will render'); },
+
+  didRender: function(){ console.log('component did render'); },
+
+  render: function(){
+    var string = this.state.clicked ? 'thanks': 'click me';
+    return $('p', {onclick: this.onclick.bind(this), className: 'helloWorld'}, string);
+  },
+
+  onclick: function(e){
+    e.preventDefault();
+
+    // This should automaticall re-render the component to the DOM
+    // using Newton.DOM.update method.
+    this.setState({clicked: !this.state.clicked});
+  }
+});
+
+var OuterComponent = Newton.createClass({
+  willRender: function(){ console.log('outer will render'); },
+
+  render: function(){
+    return $('div', {className: 'outer'}, $(Text));
+  }
+});
+
+// var clickme = $(Text);
+
+Newton.DOM.render($(OuterComponent), document.getElementById('newton-container'));
+
+

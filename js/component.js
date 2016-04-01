@@ -33,7 +33,7 @@
         if (newState.hasOwnProperty(state)) this.state[state] = newState[state];
       }
 
-      this.render();
+      Newton.DOM.update(this);
     },
 
     render: function(){

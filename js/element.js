@@ -30,7 +30,7 @@
     };
 
     this.type = type;
-    this.attrs = attrs;
+    this.attrs = attrs ? attrs : {};
 
     this.setChildren(children);
   }
@@ -53,7 +53,9 @@
     _buildAttributes: function() {
       for (var attr in this.attrs) {
         if (this.attrs.hasOwnProperty(attr)) {
-          this.element[attr] = this.attrs[attr]
+          (attr === 'data-newtonid') ?
+            this.element.setAttribute(attr, this.attrs[attr]) :
+            this.element[attr] = this.attrs[attr];
         }
       }
     },
