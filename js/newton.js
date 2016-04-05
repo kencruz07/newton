@@ -36,12 +36,7 @@ Newton.prototype = {
         i++;
       }
 
-      this.render = properties.render || null;
-
-      this.state = properties.getInitialState || {};
-
       this.willRender = properties.willRender || function(){};
-
       this.didRender = properties.didRender || function(){};
     }
 
